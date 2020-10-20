@@ -25,6 +25,10 @@ def dataframeInitAst():
     df = pandas.DataFrame(data=None,columns=['course','class','timestamp','title','link'],index=None)
     return df
 
+def dataframeInitAllAst():
+    df = pandas.DataFrame(data=None,columns=['initial','course','class','timestamp','meeting type','title'],index=None)
+    return df
+
 class Data:
     filename = ""
     writer = None

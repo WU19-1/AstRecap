@@ -5,7 +5,7 @@ import sys
 
 def login():
     username = input("Input email (without @binus.ac.id) : ")
-    password = getpass.getpass("Input password : ")
+    password = getpass.getpass("Input binusmaya password : ")
 
     sess = requests.session()
 
