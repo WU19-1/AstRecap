@@ -50,11 +50,12 @@ def main():
     cellNumberIdx = 2
 
     for i in resp.json():
+        print(i['KODE_DOSEN'])
         if re.search("D[0-9][0-9][0-9][0-9]", i['KODE_DOSEN']) != None or i['CLASS_SECTION'][0] == 'X' or i['N_DELIVERY_MODE'] == 'VC':
             continue
         if 'LC' in i['KODE_DOSEN']:
             df = df.append(pd.Series(data={
-                'initial':i['KODE_DOSEN']
+                'initial':i['KODE_DOSEN'],
                 'course':i['CRSE_CODE'],
                 'class':i['CLASS_SECTION'],
                 'timestamp':i['ForumPostDate'],
