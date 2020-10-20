@@ -50,18 +50,19 @@ def main():
     cellNumberIdx = 2
 
     for i in resp.json():
-        if re.search("D[0-9][0-9][0-9][0-9]", i['KODE_DOSEN']) != None or i['CLASS_SECTION'][0] == 'X' or i['N_DELIVERY_MODE'] == 'VC':
+        if re.search("D[0-9][0-9][0-9][0-9]", i['KODE_DOSEN']) != None or i['N_DELIVERY_MODE'] == 'VC':
             continue
-        if 'LC' in i['KODE_DOSEN']:
+		print(i)
+        if 'LC' in i['KODE_DOSEN'] or len(i['KODE_DOSEN']) > 5:
             df = df.append(pd.Series(data={
-                'initial':i['KODE_DOSEN']
+                'initial':i['KODE_DOSEN'],
                 'course':i['CRSE_CODE'],
                 'class':i['CLASS_SECTION'],
                 'timestamp':i['ForumPostDate'],
                 'meeting type':i['N_DELIVERY_MODE'],
                 'title':i['ForumThreadTitle']
             },name=cellNumberIdx))
-        else:
+        elif i['CLASS_SECTION'][0] == 'B':
             df = df.append(pd.Series(data={
                 'initial':i['KODE_DOSEN'][0] + i['KODE_DOSEN'][1],
                 'course':i['CRSE_CODE'],
